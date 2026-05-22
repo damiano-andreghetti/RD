@@ -1,5 +1,5 @@
 using ColorVectorSpace, Images, Colors
-import Compose: polygon, context, fill, mm, set_default_graphic_size, compose, draw, PNG
+import Compose: polygon, context, fill, mm, set_default_graphic_size, compose, draw, PNG, PDF
 import Cairo, Fontconfig
 
 function hexagon(x, y, r)
@@ -60,4 +60,12 @@ function raster(c)
     m, n = 2 .* (size(A) .÷ 2)
     #crop to even dimensions and N0f8 colorspace
     RGB{N0f8}.(@view A[1:m,1:n])
+end
+
+
+function savepdf(filename, p)
+    open(filename, "w") do io 
+        draw(PDF(io), p); 
+        close(io)
+    end
 end
