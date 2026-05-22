@@ -91,7 +91,7 @@ rng = Random.Xoshiro(22)
 (; M, mem, cyto, layout) = build_model(L)
 s = State(M, mem, cyto; rng)
 
-colors = color.(["yellow","blue","black","black"])/30
+colors = ([colorant"yellow",colorant"blue",colorant"black",colorant"black"])/30
 # push measures into a stack, access them with measurer.stack
 measurer = Pusher((t,s,_...)->Measure(M,s,t), Measure)
 # push states into a stack, access them with states.stack
