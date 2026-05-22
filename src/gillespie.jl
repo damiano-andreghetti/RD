@@ -1,11 +1,11 @@
-@enum Event evdif evatt evdet evcat evrea evend
+@enum Event evdif evrea evatt evdet evcat evend
 
 function build_queues(M)
     N = nsites(M)
     Qn = Tuple(StaticExponentialQueue(N) for _ in M.species)
     Qcat = Tuple(StaticExponentialQueue(N) for _ in M.cat)
     Qrea = Tuple(StaticExponentialQueue(N) for r in M.rea)
-    Qatt = Tuple(Qn[m1]*0.0 for (m,m1,ka) in M.att)
+    Qatt = Tuple(Qn[m1]*Ref(0.0) for (m,m1,ka) in M.att)
     Q = NestedQueue((
         ((evdif,m) => Qn[m] * d for (m,d) in M.dif)...,
         ((evatt,m) => q for ((m,_,_),q) in zip(M.att, Qatt))...,
