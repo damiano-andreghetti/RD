@@ -1,6 +1,6 @@
 module MembraneRD
 
-using ExponentialQueues, Random
+using ExponentialQueues, Random, FixedSizeArrays
 
 export Model, State, run_RD!, gen_hex_lattice, gen_rect_lattice,
     nspecies, nsites, @species, @reaction, @catalytic
